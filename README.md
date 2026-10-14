@@ -47,3 +47,8 @@ API tokens are stored as SHA-256 digests and can be revoked. Do not paste API to
 ## Not implemented yet
 
 This commit adds account API-token management, not a Pterodactyl-equivalent execution engine. Server create/delete/start/stop, Docker runner authentication, live WebSocket console, file manager, resource enforcement, ports, backups, schedules, databases, and server allocations still require implementation and a separate secured Linux VPS. Do not expose the Docker socket to this public web service. For production, replace the JSON file and Express MemoryStore with a persistent database and persistent session store.
+
+
+## Railway Pterodactyl panel template
+
+See [RAILWAY-PTERODACTYL.md](RAILWAY-PTERODACTYL.md) and the `railway/pterodactyl/` folder for a panel-image deployment scaffold based on the public Dektion Studio template approach. The current template deploys only the **web panel**. It does not install Wings or expose host Docker access from Railway. A supported Linux VPS/node is still required for Wings and real Python/Node.js server execution.
