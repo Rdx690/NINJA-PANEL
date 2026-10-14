@@ -1,0 +1,3 @@
+[client]
+# Prefer Railway private networking for database connections.
+# Add provider-specific TLS options only when required by the selected database.
