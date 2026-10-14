@@ -1,0 +1,9 @@
+{
+  "name": "ninja-panel-sourajit-vfx",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pterodactyl-inspired Python and Node.js bot hosting panel scaffold",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "express": "^4.21.2", "express-session": "^1.18.1", "helmet": "^8.0.0" }
+}
