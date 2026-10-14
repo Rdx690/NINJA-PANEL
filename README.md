@@ -22,3 +22,28 @@ Open `http://localhost:3000`.
 - `SESSION_SECRET`: required, minimum 32 characters
 
 This starter does not yet start arbitrary user bots; it provides a login-protected panel UI and health endpoint. Deploy the dashboard and the isolated Docker runner as separate services on a VPS for real hosting.
+## API (current implementation)
+
+All routes use JSON. Browser account routes require an authenticated session.
+
+- `GET /api/health` — health check.
+- `GET /api/me` — current browser session.
+- `POST /api/register` — public user registration.
+- `POST /api/login` and `POST /api/logout` — browser authentication.
+- `GET /api/servers` — currently returns an empty list and a runner-not-connected note.
+- `GET /api/account/api-keys` — list the signed-in user's active API keys (never returns token secrets).
+- `POST /api/account/api-keys` with `{"name":"my script"}` — create a key. Copy the returned `key.token` immediately; it is only shown once.
+- `DELETE /api/account/api-keys/:id` — revoke one of the signed-in user's keys.
+- `GET /api/v1/me` with header `Authorization: Bearer ninja_...` — verify an API token and return the account profile.
+
+Example API request:
+
+```sh
+curl -H "Authorization: Bearer YOUR_NINJA_API_TOKEN" https://YOUR-PANEL-URL/api/v1/me
+```
+
+API tokens are stored as SHA-256 digests and can be revoked. Do not paste API tokens into public repositories, screenshots, or client-side websites.
+
+## Not implemented yet
+
+This commit adds account API-token management, not a Pterodactyl-equivalent execution engine. Server create/delete/start/stop, Docker runner authentication, live WebSocket console, file manager, resource enforcement, ports, backups, schedules, databases, and server allocations still require implementation and a separate secured Linux VPS. Do not expose the Docker socket to this public web service. For production, replace the JSON file and Express MemoryStore with a persistent database and persistent session store.
